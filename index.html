@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Dropzone simple example</title>
+    <script src="/static/dropzone.js"></script>
+    <script src="/static/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="/static/dropzone.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <div id="dropzone">
+        <form action="/upload" class="dropzone" id="file-upload">
+            <div class="dz-message">
+                Drop files here or click to upload.
+            </div>
+        </form>
+    </div>
+    <div id="latest-image">
+    </div>
+    <script>
+    $(function() {
+        window.getLatestImage = function() {
+            $.get('/latest', function(data, status, xhr) {
+                $('#latest-image').html(data);
+            });
+        };
+        getLatestImage();
+    });
+
+    Dropzone.options.fileUpload = {
+        success: function(file, response) {
+            getLatestImage();
+        }
+    };
+    </script>
+</body>
+
+</html>
