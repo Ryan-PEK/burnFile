@@ -12,6 +12,7 @@ Thumbs.db
 npm-debug.log
 node_modules/
 uploads/
+*.db
 
 # MEAN.js app and assets
 # ======================
